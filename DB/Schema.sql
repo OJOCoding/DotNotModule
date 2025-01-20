@@ -1,0 +1,92 @@
+drop table MEASUREMENT_UNIT;
+drop table ITEM_CATEGORY;
+drop table PACKAGE_TYPE;
+drop table ITEM;
+drop table ITEM_PKG;
+go
+
+
+
+/* --------------------------------------------------------------------------
+		Measurement Unit table
+   -------------------------------------------------------------------------- */
+create table MEASUREMENT_UNIT
+(
+	 CID int,
+	 NAME varchar(50) not null, 
+	 SYMBOL VARCHAR(5) not null, 
+	 constraint PK_MEASUREMENT_UNIT primary key (CID)
+);
+go
+
+/* --------------------------------------------------------------------------
+		Item Category table
+   -------------------------------------------------------------------------- */
+create table ITEM_CATEGORY
+(
+	 CID int not null,
+	 NAME varchar(50) not null, 
+	 LEVEL int not null default 0,
+	 PARENT_CATEGORY_CID int null,
+	 constraint PK_ITEM_CATEGORY primary key (CID),
+	 constraint SK_ITEM_CATEGORY_01 foreign key (PARENT_CATEGORY_CID) references ITEM_CATEGORY(CID)
+);
+go
+
+
+/* --------------------------------------------------------------------------
+		Package type table
+   -------------------------------------------------------------------------- */
+create table PACKAGE_TYPE
+(
+	 ID int not null identity,
+	 NAME varchar(50) not null,
+	 constraint PK_PACKAGE_TYPE primary key (ID)
+);
+go
+
+
+/* --------------------------------------------------------------------------
+		Item table
+   -------------------------------------------------------------------------- */
+create table ITEM
+(
+	 ID int not null identity,
+	 CODE nvarchar(32) not null,
+	 NAME varchar(100) not null, 
+	 PRICE decimal(18, 2), 
+	 MEASUREMENT_UNIT_CID int not null,
+	 ITEM_CATEGORY_CID int not null,
+	 PROD_BY_CORP nvarchar(6) not null,
+	 constraint PK_ITEM primary key (ID),
+	 constraint FK_ITEM_REF_MEASUREMENT_UNIT foreign key (MEASUREMENT_UNIT_CID) references MEASUREMENT_UNIT(CID),
+	 constraint FK_ITEM_REF_ITEM_CATEGORY foreign key (ITEM_CATEGORY_CID) references ITEM_CATEGORY(CID)
+);
+go
+
+/* --------------------------------------------------------------------------
+		Item Packages table
+   -------------------------------------------------------------------------- */
+create table ITEM_PKG
+(
+	 ID int	not null identity,
+	 ITEM_ID int not null,
+	 BARCODE nvarchar(32) not null,
+	 SERIAL_NUM nvarchar(50) not null,
+	 PACKAGE_TYPE_CID int not null,
+	 DIM_X int not null,
+	 DIM_Y int not null,
+	 DIM_Z int not null,
+	 CREATED_DATE datetime, 
+	 constraint PK_ITEM_PKG primary key (ID),
+	 constraint FK_ITEM_PKG_REF_ITEM foreign key (ITEM_ID) references ITEM(ID),
+	 constraint UQ_ITEM_PKG_BARCODE unique (BARCODE) 
+);
+go
+
+
+
+
+
+
+

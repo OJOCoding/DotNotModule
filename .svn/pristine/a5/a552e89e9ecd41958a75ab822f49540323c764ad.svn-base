@@ -1,0 +1,464 @@
+﻿namespace DataReader.ux
+{
+    partial class CFormMaster
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            tabPages = new TabControl();
+            tabViewBrowser = new TabPage();
+            pnlBrowserCommands = new Panel();
+            btnDelete = new Button();
+            btnNew = new Button();
+            btnOpen = new Button();
+            btnRefreshBrowser = new Button();
+            pnlBrowser = new Panel();
+            dgvBrowser = new DataGridView();
+            tabViewEntity = new TabPage();
+            txtPBC = new TextBox();
+            lblprice = new Label();
+            txtPrice = new TextBox();
+            lblpcomp = new Label();
+            cboIC = new ComboBox();
+            txtName = new TextBox();
+            pnlEntityCommands = new Panel();
+            btnCancel = new Button();
+            btnSave = new Button();
+            btnEntityDelete = new Button();
+            btnEntityNew = new Button();
+            btnEdit = new Button();
+            lblcode = new Label();
+            txtCode = new TextBox();
+            lblname = new Label();
+            cboMU = new ComboBox();
+            lblmu = new Label();
+            lblic = new Label();
+            lblpack = new Label();
+            dgvDetails = new DataGridView();
+            tabPages.SuspendLayout();
+            tabViewBrowser.SuspendLayout();
+            pnlBrowserCommands.SuspendLayout();
+            pnlBrowser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvBrowser).BeginInit();
+            tabViewEntity.SuspendLayout();
+            pnlEntityCommands.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDetails).BeginInit();
+            SuspendLayout();
+            // 
+            // tabPages
+            // 
+            tabPages.Controls.Add(tabViewBrowser);
+            tabPages.Controls.Add(tabViewEntity);
+            tabPages.Dock = DockStyle.Fill;
+            tabPages.Location = new Point(0, 0);
+            tabPages.Margin = new Padding(4, 5, 4, 5);
+            tabPages.Name = "tabPages";
+            tabPages.SelectedIndex = 0;
+            tabPages.Size = new Size(1143, 750);
+            tabPages.TabIndex = 0;
+            tabPages.SelectedIndexChanged += DoOnAnyCommand;
+            // 
+            // tabViewBrowser
+            // 
+            tabViewBrowser.Controls.Add(pnlBrowserCommands);
+            tabViewBrowser.Controls.Add(pnlBrowser);
+            tabViewBrowser.Location = new Point(4, 34);
+            tabViewBrowser.Margin = new Padding(4, 5, 4, 5);
+            tabViewBrowser.Name = "tabViewBrowser";
+            tabViewBrowser.Padding = new Padding(4, 5, 4, 5);
+            tabViewBrowser.Size = new Size(1135, 712);
+            tabViewBrowser.TabIndex = 0;
+            tabViewBrowser.Text = "Browser";
+            tabViewBrowser.UseVisualStyleBackColor = true;
+            // 
+            // pnlBrowserCommands
+            // 
+            pnlBrowserCommands.BackColor = Color.LightGray;
+            pnlBrowserCommands.Controls.Add(btnDelete);
+            pnlBrowserCommands.Controls.Add(btnNew);
+            pnlBrowserCommands.Controls.Add(btnOpen);
+            pnlBrowserCommands.Controls.Add(btnRefreshBrowser);
+            pnlBrowserCommands.Location = new Point(4, 5);
+            pnlBrowserCommands.Margin = new Padding(4, 5, 4, 5);
+            pnlBrowserCommands.Name = "pnlBrowserCommands";
+            pnlBrowserCommands.Size = new Size(286, 693);
+            pnlBrowserCommands.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(26, 320);
+            btnDelete.Margin = new Padding(4, 5, 4, 5);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(234, 73);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Delete Item";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += DoOnAnyCommand;
+            // 
+            // btnNew
+            // 
+            btnNew.Location = new Point(26, 237);
+            btnNew.Margin = new Padding(4, 5, 4, 5);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(234, 73);
+            btnNew.TabIndex = 2;
+            btnNew.Text = "New Item";
+            btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += DoOnAnyCommand;
+            // 
+            // btnOpen
+            // 
+            btnOpen.Location = new Point(26, 22);
+            btnOpen.Margin = new Padding(4, 5, 4, 5);
+            btnOpen.Name = "btnOpen";
+            btnOpen.Size = new Size(234, 73);
+            btnOpen.TabIndex = 1;
+            btnOpen.Text = "Open Item Details";
+            btnOpen.UseVisualStyleBackColor = true;
+            btnOpen.Click += DoOnAnyCommand;
+            // 
+            // btnRefreshBrowser
+            // 
+            btnRefreshBrowser.Location = new Point(26, 612);
+            btnRefreshBrowser.Margin = new Padding(4, 5, 4, 5);
+            btnRefreshBrowser.Name = "btnRefreshBrowser";
+            btnRefreshBrowser.Size = new Size(234, 73);
+            btnRefreshBrowser.TabIndex = 0;
+            btnRefreshBrowser.Text = "Refresh\r\nBrowser";
+            btnRefreshBrowser.UseVisualStyleBackColor = true;
+            btnRefreshBrowser.Click += DoOnAnyCommand;
+            // 
+            // pnlBrowser
+            // 
+            pnlBrowser.Controls.Add(dgvBrowser);
+            pnlBrowser.Dock = DockStyle.Right;
+            pnlBrowser.Location = new Point(302, 5);
+            pnlBrowser.Margin = new Padding(4, 5, 4, 5);
+            pnlBrowser.Name = "pnlBrowser";
+            pnlBrowser.Size = new Size(829, 702);
+            pnlBrowser.TabIndex = 0;
+            // 
+            // dgvBrowser
+            // 
+            dgvBrowser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBrowser.Dock = DockStyle.Fill;
+            dgvBrowser.Location = new Point(0, 0);
+            dgvBrowser.Margin = new Padding(4, 5, 4, 5);
+            dgvBrowser.Name = "dgvBrowser";
+            dgvBrowser.RowHeadersWidth = 62;
+            dgvBrowser.RowTemplate.Height = 25;
+            dgvBrowser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBrowser.Size = new Size(829, 702);
+            dgvBrowser.TabIndex = 0;
+            dgvBrowser.DoubleClick += DoOnAnyCommand;
+            // 
+            // tabViewEntity
+            // 
+            tabViewEntity.Controls.Add(txtPBC);
+            tabViewEntity.Controls.Add(lblprice);
+            tabViewEntity.Controls.Add(txtPrice);
+            tabViewEntity.Controls.Add(lblpcomp);
+            tabViewEntity.Controls.Add(cboIC);
+            tabViewEntity.Controls.Add(txtName);
+            tabViewEntity.Controls.Add(pnlEntityCommands);
+            tabViewEntity.Controls.Add(lblcode);
+            tabViewEntity.Controls.Add(txtCode);
+            tabViewEntity.Controls.Add(lblname);
+            tabViewEntity.Controls.Add(cboMU);
+            tabViewEntity.Controls.Add(lblmu);
+            tabViewEntity.Controls.Add(lblic);
+            tabViewEntity.Controls.Add(lblpack);
+            tabViewEntity.Controls.Add(dgvDetails);
+            tabViewEntity.Location = new Point(4, 34);
+            tabViewEntity.Margin = new Padding(4, 5, 4, 5);
+            tabViewEntity.Name = "tabViewEntity";
+            tabViewEntity.Padding = new Padding(4, 5, 4, 5);
+            tabViewEntity.Size = new Size(1135, 712);
+            tabViewEntity.TabIndex = 1;
+            tabViewEntity.Text = "Entity";
+            tabViewEntity.UseVisualStyleBackColor = true;
+            // 
+            // txtPBC
+            // 
+            txtPBC.Location = new Point(506, 235);
+            txtPBC.Margin = new Padding(4, 5, 4, 5);
+            txtPBC.Name = "txtPBC";
+            txtPBC.Size = new Size(464, 31);
+            txtPBC.TabIndex = 16;
+            // 
+            // lblprice
+            // 
+            lblprice.AutoSize = true;
+            lblprice.Location = new Point(357, 189);
+            lblprice.Margin = new Padding(4, 0, 4, 0);
+            lblprice.Name = "lblprice";
+            lblprice.Size = new Size(49, 25);
+            lblprice.TabIndex = 14;
+            lblprice.Text = "Price";
+            // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(457, 184);
+            txtPrice.Margin = new Padding(4, 5, 4, 5);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(464, 31);
+            txtPrice.TabIndex = 13;
+            // 
+            // lblpcomp
+            // 
+            lblpcomp.AutoSize = true;
+            lblpcomp.Location = new Point(303, 235);
+            lblpcomp.Margin = new Padding(4, 0, 4, 0);
+            lblpcomp.Name = "lblpcomp";
+            lblpcomp.Size = new Size(195, 25);
+            lblpcomp.TabIndex = 15;
+            lblpcomp.Text = "Produced by Company";
+            // 
+            // cboIC
+            // 
+            cboIC.FormattingEnabled = true;
+            cboIC.Location = new Point(836, 137);
+            cboIC.Name = "cboIC";
+            cboIC.Size = new Size(240, 33);
+            cboIC.TabIndex = 12;
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(457, 86);
+            txtName.Margin = new Padding(4, 5, 4, 5);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(464, 31);
+            txtName.TabIndex = 11;
+            txtName.TextChanged += textBox1_TextChanged;
+            // 
+            // pnlEntityCommands
+            // 
+            pnlEntityCommands.BackColor = Color.LightGray;
+            pnlEntityCommands.Controls.Add(btnCancel);
+            pnlEntityCommands.Controls.Add(btnSave);
+            pnlEntityCommands.Controls.Add(btnEntityDelete);
+            pnlEntityCommands.Controls.Add(btnEntityNew);
+            pnlEntityCommands.Controls.Add(btnEdit);
+            pnlEntityCommands.Location = new Point(1, 5);
+            pnlEntityCommands.Margin = new Padding(4, 5, 4, 5);
+            pnlEntityCommands.Name = "pnlEntityCommands";
+            pnlEntityCommands.Size = new Size(286, 693);
+            pnlEntityCommands.TabIndex = 10;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(27, 393);
+            btnCancel.Margin = new Padding(4, 5, 4, 5);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(234, 73);
+            btnCancel.TabIndex = 7;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += DoOnAnyCommand;
+            // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(26, 310);
+            btnSave.Margin = new Padding(4, 5, 4, 5);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(234, 73);
+            btnSave.TabIndex = 6;
+            btnSave.Text = "Save Changes";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += DoOnAnyCommand;
+            // 
+            // btnEntityDelete
+            // 
+            btnEntityDelete.Location = new Point(27, 612);
+            btnEntityDelete.Margin = new Padding(4, 5, 4, 5);
+            btnEntityDelete.Name = "btnEntityDelete";
+            btnEntityDelete.Size = new Size(234, 73);
+            btnEntityDelete.TabIndex = 5;
+            btnEntityDelete.Text = "Delete Item";
+            btnEntityDelete.UseVisualStyleBackColor = true;
+            btnEntityDelete.Click += DoOnAnyCommand;
+            // 
+            // btnEntityNew
+            // 
+            btnEntityNew.Location = new Point(27, 528);
+            btnEntityNew.Margin = new Padding(4, 5, 4, 5);
+            btnEntityNew.Name = "btnEntityNew";
+            btnEntityNew.Size = new Size(234, 73);
+            btnEntityNew.TabIndex = 4;
+            btnEntityNew.Text = "Add New Item";
+            btnEntityNew.UseVisualStyleBackColor = true;
+            btnEntityNew.Click += DoOnAnyCommand;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Location = new Point(27, 27);
+            btnEdit.Margin = new Padding(4, 5, 4, 5);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(234, 73);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "Edit Item Details";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += DoOnAnyCommand;
+            // 
+            // lblcode
+            // 
+            lblcode.AutoSize = true;
+            lblcode.Location = new Point(357, 37);
+            lblcode.Margin = new Padding(4, 0, 4, 0);
+            lblcode.Name = "lblcode";
+            lblcode.Size = new Size(58, 25);
+            lblcode.TabIndex = 4;
+            lblcode.Text = "Code:";
+            // 
+            // txtCode
+            // 
+            txtCode.Location = new Point(457, 32);
+            txtCode.Margin = new Padding(4, 5, 4, 5);
+            txtCode.Name = "txtCode";
+            txtCode.Size = new Size(464, 31);
+            txtCode.TabIndex = 0;
+            // 
+            // lblname
+            // 
+            lblname.AutoSize = true;
+            lblname.Location = new Point(303, 83);
+            lblname.Margin = new Padding(4, 0, 4, 0);
+            lblname.Name = "lblname";
+            lblname.Size = new Size(104, 25);
+            lblname.TabIndex = 5;
+            lblname.Text = "Item Name:";
+            // 
+            // cboMU
+            // 
+            cboMU.FormattingEnabled = true;
+            cboMU.Location = new Point(457, 137);
+            cboMU.Name = "cboMU";
+            cboMU.Size = new Size(240, 33);
+            cboMU.TabIndex = 3;
+            cboMU.SelectedValueChanged += DoOnSelectItemCategory;
+            // 
+            // lblmu
+            // 
+            lblmu.AutoSize = true;
+            lblmu.Location = new Point(296, 137);
+            lblmu.Margin = new Padding(4, 0, 4, 0);
+            lblmu.Name = "lblmu";
+            lblmu.Size = new Size(161, 25);
+            lblmu.TabIndex = 6;
+            lblmu.Text = "Measurement Unit:";
+            // 
+            // lblic
+            // 
+            lblic.AutoSize = true;
+            lblic.Location = new Point(704, 137);
+            lblic.Margin = new Padding(4, 0, 4, 0);
+            lblic.Name = "lblic";
+            lblic.Size = new Size(125, 25);
+            lblic.TabIndex = 7;
+            lblic.Text = "Item Category";
+            // 
+            // lblpack
+            // 
+            lblpack.AutoSize = true;
+            lblpack.Location = new Point(457, 271);
+            lblpack.Margin = new Padding(4, 0, 4, 0);
+            lblpack.Name = "lblpack";
+            lblpack.Size = new Size(208, 25);
+            lblpack.TabIndex = 9;
+            lblpack.Text = "Packaging Lines For Item";
+            // 
+            // dgvDetails
+            // 
+            dgvDetails.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvDetails.ColumnHeadersHeight = 34;
+            dgvDetails.Location = new Point(457, 301);
+            dgvDetails.Margin = new Padding(4, 5, 4, 5);
+            dgvDetails.Name = "dgvDetails";
+            dgvDetails.RowHeadersWidth = 62;
+            dgvDetails.RowTemplate.Height = 25;
+            dgvDetails.Size = new Size(659, 360);
+            dgvDetails.TabIndex = 8;
+            dgvDetails.CellEndEdit += DoOnEditDetailRow;
+            dgvDetails.RowsAdded += DoOnAddDetailRow;
+            dgvDetails.KeyDown += DoOnDetailGridKeyDown;
+            // 
+            // CFormMaster
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1143, 750);
+            Controls.Add(tabPages);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "CFormMaster";
+            Text = "CFormMaster";
+            FormClosed += DoOnFormClosed;
+            tabPages.ResumeLayout(false);
+            tabViewBrowser.ResumeLayout(false);
+            pnlBrowserCommands.ResumeLayout(false);
+            pnlBrowser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvBrowser).EndInit();
+            tabViewEntity.ResumeLayout(false);
+            tabViewEntity.PerformLayout();
+            pnlEntityCommands.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDetails).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private TabControl tabPages;
+        private TabPage tabViewBrowser;
+        private DataGridView dgvBrowser;
+        private TabPage tabViewEntity;
+        private DateTimePicker dtSubscriptionEndDate;
+        private TextBox txtCode;
+        private Label lblcode;
+        private Label lblname;
+        private Label lblmu;
+        private Label lblic;
+        private Label lblprice;
+        private DataGridView dgvDetails;
+        private Panel pnlBrowserCommands;
+        private Panel pnlBrowser;
+        private Button btnDelete;
+        private Button btnNew;
+        private Button btnOpen;
+        private Button btnRefreshBrowser;
+        private Panel pnlEntityCommands;
+        private Button btnEntityDelete;
+        private Button btnEntityNew;
+        private Button btnEdit;
+        private Button btnSave;
+        private Button btnCancel;
+        private TextBox txtName;
+        private ComboBox cboMU;
+        private TextBox txtPBC;
+        private Label lblpack;
+        private TextBox txtPrice;
+        private Label lblpcomp;
+        private ComboBox cboIC;
+    }
+}

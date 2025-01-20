@@ -1,0 +1,122 @@
+﻿namespace DataReader.ux
+{
+    partial class CFormMain
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+      
+        
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            mnuMain = new MenuStrip();
+            mnuUsers = new ToolStripMenuItem();
+            itemPackagingToolStripMenuItem = new ToolStripMenuItem();
+            mnuTables = new ToolStripMenuItem();
+            mnuSubscriptionPlans = new ToolStripMenuItem();
+            packageTypeToolStripMenuItem = new ToolStripMenuItem();
+            measurementUnitToolStripMenuItem = new ToolStripMenuItem();
+            mnuUserCustomers = new ToolStripMenuItem();
+            mnuMain.SuspendLayout();
+            SuspendLayout();
+            // 
+            // mnuMain
+            // 
+            mnuMain.BackColor = SystemColors.ActiveBorder;
+            mnuMain.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            mnuMain.ImageScalingSize = new Size(24, 24);
+            mnuMain.Items.AddRange(new ToolStripItem[] { mnuUsers, mnuTables });
+            mnuMain.Location = new Point(0, 0);
+            mnuMain.Name = "mnuMain";
+            mnuMain.Padding = new Padding(9, 3, 0, 3);
+            mnuMain.Size = new Size(1125, 35);
+            mnuMain.TabIndex = 2;
+            mnuMain.Text = "menuStrip1";
+            // 
+            // mnuUsers
+            // 
+            mnuUsers.DropDownItems.AddRange(new ToolStripItem[] { itemPackagingToolStripMenuItem });
+            mnuUsers.Name = "mnuUsers";
+            mnuUsers.Size = new Size(91, 29);
+            mnuUsers.Text = "Browser";
+            // 
+            // itemPackagingToolStripMenuItem
+            // 
+            itemPackagingToolStripMenuItem.Name = "itemPackagingToolStripMenuItem";
+            itemPackagingToolStripMenuItem.Size = new Size(270, 34);
+            itemPackagingToolStripMenuItem.Text = "Item Packaging";
+            itemPackagingToolStripMenuItem.Click += DoOnShowBrowser;
+            // 
+            // mnuTables
+            // 
+            mnuTables.DropDownItems.AddRange(new ToolStripItem[] { mnuSubscriptionPlans, packageTypeToolStripMenuItem, measurementUnitToolStripMenuItem });
+            mnuTables.Name = "mnuTables";
+            mnuTables.Size = new Size(76, 29);
+            mnuTables.Text = "Tables";
+            // 
+            // mnuSubscriptionPlans
+            // 
+            mnuSubscriptionPlans.Name = "mnuSubscriptionPlans";
+            mnuSubscriptionPlans.Size = new Size(270, 34);
+            mnuSubscriptionPlans.Text = "Item Category";
+            mnuSubscriptionPlans.Click += DoOnClickShowIC;
+            // 
+            // packageTypeToolStripMenuItem
+            // 
+            packageTypeToolStripMenuItem.Name = "packageTypeToolStripMenuItem";
+            packageTypeToolStripMenuItem.Size = new Size(270, 34);
+            packageTypeToolStripMenuItem.Text = "Package Type";
+            packageTypeToolStripMenuItem.Click += DoOnClickShowPT;
+            // 
+            // measurementUnitToolStripMenuItem
+            // 
+            measurementUnitToolStripMenuItem.Name = "measurementUnitToolStripMenuItem";
+            measurementUnitToolStripMenuItem.Size = new Size(270, 34);
+            measurementUnitToolStripMenuItem.Text = "Measurement Unit";
+            measurementUnitToolStripMenuItem.Click += DoOnClickShowMU;
+            // 
+            // mnuUserCustomers
+            // 
+            mnuUserCustomers.Name = "mnuUserCustomers";
+            mnuUserCustomers.Size = new Size(270, 34);
+            mnuUserCustomers.Text = "Item-Packaging";
+            mnuUserCustomers.Click += DoOnShowBrowser;
+            // 
+            // CFormMain
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1125, 687);
+            Controls.Add(mnuMain);
+            IsMdiContainer = true;
+            MainMenuStrip = mnuMain;
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "CFormMain";
+            Text = "Item Packaging Manager";
+            WindowState = FormWindowState.Maximized;
+            mnuMain.ResumeLayout(false);
+            mnuMain.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private MenuStrip mnuMain;
+        private ToolStripMenuItem mnuUsers;
+        private ToolStripMenuItem mnuTables;
+        private ToolStripMenuItem mnuSubscriptionPlans;
+        private ToolStripMenuItem mnuUserCustomers;
+        private ToolStripMenuItem packageTypeToolStripMenuItem;
+        private ToolStripMenuItem measurementUnitToolStripMenuItem;
+        private ToolStripMenuItem itemPackagingToolStripMenuItem;
+    }
+}

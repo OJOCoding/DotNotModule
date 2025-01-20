@@ -1,0 +1,438 @@
+﻿using ItemPackagingLogic.DataModules;
+using ItemPackagingLogic.Entities;
+using Lib.UX.Forms;
+using Lib.UX.MasterForm.States;
+using System.ComponentModel;
+using System.Data;
+using Lib.UX.DataGrid;
+using ItemPackagingLogic;
+
+
+namespace DataReader.ux
+{
+    // ....................................................................
+    public partial class CFormMaster : Form
+    {
+
+        protected CModuleItem module;
+        private BindingList<CItem> __dsBrowser;
+        private BindingList<CItem_PKG> __dsDetails;
+        protected CMasterFormContext dataFormContext;
+        protected Dictionary<string, Object> browserCriteria = new Dictionary<string, object>();
+
+        protected DataGridViewComboBoxColumn? cboDetailPT = null;
+
+        protected IDataModule moduleIntf;
+
+        // ........................................................................
+        public CItem? BrowserSelectedItem
+        {
+            get
+            {
+                CItem? oResult = null;
+                if (dgvBrowser.CurrentRow != null)
+                    oResult = (CItem?)dgvBrowser.CurrentRow.DataBoundItem;
+
+                return oResult;
+            }
+        }
+  
+
+        // ....................................................................
+        public IEntity? DetailGridCurrentEntry
+        {
+            get
+            {
+                IEntity? oResult = null;
+                if (this.dgvDetails.CurrentRow != null)
+                    oResult = this.dgvDetails.CurrentRow.DataBoundItem as IEntity;
+
+                return oResult;
+            }
+        }
+        // ....................................................................
+
+
+
+
+        // --------------------------------------------------------------------------------------
+        public CFormMaster()
+        {
+            InitializeComponent();
+
+            this.dataFormContext = new CMasterFormContext()
+            {
+                Views = this.tabPages,
+                BrowserView = this.tabViewBrowser,
+                EntityView = this.tabViewEntity,
+                New = this.btnNew,
+                NewEntity = this.btnEntityNew,
+                Open = this.btnOpen,
+                Edit = this.btnEdit,
+                Save = this.btnSave,
+                Delete = this.btnDelete,
+                DeleteEntity = this.btnEntityDelete,
+                RefreshBrowser = this.btnRefreshBrowser,
+                Cancel = this.btnCancel
+            };
+
+            this.dataFormContext.Initialize(typeof(CMasterFormStateInitial));
+
+            this.module = new CModuleItem();
+
+            //[C#] Keeping an interface reference to an object
+            this.moduleIntf = this.module as IDataModule;
+
+            //PATTERNS: Observer: Subscribe this form's data module to receive notifications by the observer (publisher)
+            CItemPackagingLogic.Instance.Observer.Subscribe(this.moduleIntf);
+
+            // We load all lookups during the startup of the form
+            this.moduleIntf.LoadLookups();
+        }
+        // --------------------------------------------------------------------------------------
+        private void DoOnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            //PATTERNS: Observer: Unsubscribe this form's data module because its form is destroyed.
+            CItemPackagingLogic.Instance.Observer.UnSubscribe(this.moduleIntf);
+        }
+        // --------------------------------------------------------------------------------------
+        protected void displayBrowserList()
+        {
+            //.NET: This is an example of data binding, where the mechanism shows a row for each object
+            //    and a column for each public property that is declared on the class
+
+            // Create a BindingList to allow table edit operations
+            this.__dsBrowser = new BindingList<CItem>(this.module.Model.ItemList);
+            // Bind with the grid
+            this.dgvBrowser.DataSource = this.__dsBrowser;
+
+            //C#: This is an example on using an extension method. 
+            this.dgvBrowser.SetColumnSizes(typeof(CItem));
+        }
+        // --------------------------------------------------------------------------------------
+        protected void displayLookup1(int? p_nForeignKeyValue)
+        {
+            // Loads all the options
+            this.cboMU.Items.Clear();
+            foreach (CMeasurement_Unit oUnit in this.module.MeasurementUnits)
+                this.cboMU.Items.Add(oUnit);
+
+            // Initializes without any choice
+            this.cboMU.Text = "";
+            this.cboMU.SelectedItem = null;
+
+            // Performs a lookup with the given foreign key value 
+            //C# LINQ: This is an expression that filters all the objects in a list using a lamda expression.
+            List<CMeasurement_Unit> oFound = this.module.MeasurementUnits.Where<CMeasurement_Unit?>(
+                                                x => x.CID == p_nForeignKeyValue).ToList();
+            if (oFound.Count > 0)
+            {
+                this.cboMU.Text = oFound[0].ToString();
+                this.cboMU.SelectedItem = oFound[0];
+            }
+        }
+        protected void displayLookup2(int? p_nForeignKeyValue)
+        {
+            // Loads all the options
+            this.cboIC.Items.Clear();
+            foreach (CItem_Category oPlan in this.module.ItemCategories)
+                this.cboIC.Items.Add(oPlan);
+
+            // Initializes without any choice
+            this.cboIC.Text = "";
+            this.cboIC.SelectedItem = null;
+
+            // Performs a lookup with the given foreign key value 
+            //C# LINQ: This is an expression that filters all the objects in a list using a lamda expression.
+            List<CItem_Category> oFound = this.module.ItemCategories.Where<CItem_Category?>(
+                                                x => x.CID == p_nForeignKeyValue).ToList();
+            if (oFound.Count > 0)
+            {
+                this.cboIC.Text = oFound[0].ToString();
+                this.cboIC.SelectedItem = oFound[0];
+            }
+        }
+        // --------------------------------------------------------------------------------------
+        protected void displayMaster()
+        {
+            CItem oCurrentItem = this.module.Model.Item;
+
+            this.txtCode.Text = oCurrentItem.Code;
+            this.txtName.Text = oCurrentItem.Name;
+            this.displayLookup1(oCurrentItem.Measurement_Unit_CID);
+            this.displayLookup2(oCurrentItem.Item_Category_CID);
+            this.txtPrice.Text = oCurrentItem.Price.ToString();
+            this.txtPBC.Text = oCurrentItem.Prod_By_Corp;
+
+        }
+        // --------------------------------------------------------------------------------------
+        protected void updateMaster()
+        {
+            CItem oCurrentItem = this.module.Model.Item;
+
+            oCurrentItem.Code = this.txtCode.Text;
+            oCurrentItem.Name = this.txtName.Text;
+
+            oCurrentItem.Measurement_Unit_CID = null;
+            if (this.cboMU.SelectedItem != null)
+            {
+                CMeasurement_Unit oSelectedUnit = (CMeasurement_Unit)this.cboMU.SelectedItem;
+                oCurrentItem.Measurement_Unit_CID = oSelectedUnit.CID;
+            }
+            oCurrentItem.Item_Category_CID = null;
+            if (this.cboIC.SelectedItem != null)
+            {
+                CItem_Category oSelectedCategory = (CItem_Category)this.cboIC.SelectedItem;
+                oCurrentItem.Item_Category_CID = oSelectedCategory.CID;
+            }
+            int Price = 0;
+            if (Int32.TryParse(this.txtPrice.Text, out Price)) { oCurrentItem.Price = Price; }
+
+            oCurrentItem.Prod_By_Corp = this.txtPBC.Text;
+
+
+            oCurrentItem.Change = EntryChangeType.UPDATED;
+        }
+        // --------------------------------------------------------------------------------------
+     
+        protected void addLookupComboBoxOnDetailList()
+        {
+            //PATTERNS: Lazy Initialization. In this case we will create the column when it is first needed
+            //          and prevent for adding it each time we load/create a new master entity
+
+            if (this.cboDetailPT == null)
+            {
+                this.cboDetailPT = new DataGridViewComboBoxColumn()
+                {
+                    HeaderText = "Item Package Type",
+                    Width = 200,
+                    ValueMember = "ID",             // The key field of the lookup entity
+                    DisplayMember = "Name",    // The field that will used for displaying a lookup entity
+                    DataPropertyName = "Package_Type_CID",        // The foreign key field on the detail entity that will receive the selected value
+                };
+
+                // Adds the column to the grid
+                this.dgvDetails.Columns.Add(cboDetailPT);
+            }
+
+            // (Re)loads all the options
+            this.cboDetailPT.DataSource = this.module.PackageType;
+        }
+        // --------------------------------------------------------------------------------------
+        protected void displayDetailList()
+        {
+            this.__dsDetails = new BindingList<CItem_PKG>(this.module.Model.Item_Package);
+            this.dgvDetails.DataSource = this.__dsDetails;
+            this.dgvDetails.SetColumnSizes(typeof(CItem_PKG));
+
+            // Create a lookup combo box column
+            addLookupComboBoxOnDetailList();
+        }
+        // --------------------------------------------------------------------------------------
+        private void DoOnAddDetailRow(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (this.DetailGridCurrentEntry != null)
+            {
+                this.DetailGridCurrentEntry.Change = EntryChangeType.CREATED;
+            }
+        }
+        // --------------------------------------------------------------------------------------
+        private void DoOnEditDetailRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.DetailGridCurrentEntry != null)
+            {
+                this.DetailGridCurrentEntry.Change = EntryChangeType.UPDATED;
+                this.dgvDetails.Refresh();
+            }
+        }
+        // --------------------------------------------------------------------------------------
+        private void DoOnDetailGridKeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.module.IsLoaded && (!this.dgvDetails.ReadOnly))
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Delete:
+                        {
+                            if (this.DetailGridCurrentEntry != null)
+                            {
+                                DialogResult oResult = MessageBox.Show("Delete this record?", "Warning", MessageBoxButtons.YesNo
+                                                            , MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                                if (oResult == DialogResult.Yes)
+                                {
+                                    this.DetailGridCurrentEntry.Change = EntryChangeType.DELETED;
+                                    this.dgvDetails.Rows.RemoveAt(this.dgvDetails.CurrentRow.Index);
+                                    this.dgvDetails.Refresh();
+                                }
+                            }
+                            e.Handled = true; //[.NET] When the keystroke should not be further used we mark it as handled.
+                            break;
+                        }
+                }
+            }
+        }
+        // --------------------------------------------------------------------------------------
+        private void DoOnAnyCommand(object sender, EventArgs e)
+        {
+            if (sender == btnRefreshBrowser)
+            {
+                if (this.module.LoadBrowser(this.browserCriteria))
+                {
+                    this.displayBrowserList();
+                    this.dataFormContext.PerformAction("LoadBrowser");
+                }
+            }
+            else if (sender == tabPages)
+            {
+                if (tabPages.SelectedIndex == 0)
+                    this.dataFormContext.PerformAction("ShowBrowser");
+            }
+            else if ((sender == btnOpen) || (sender == dgvBrowser))
+            {
+                if (this.BrowserSelectedItem != null)
+                {
+                    if (this.module.LoadMaster(this.BrowserSelectedItem.Id))
+                    {
+                        this.dataFormContext.PerformAction("OpenEntity");
+                        this.displayMaster();
+                        this.displayDetailList();
+
+                    }
+                }
+            }
+            else if (sender == btnEdit)
+                this.dataFormContext.PerformAction("EditEntity");
+            else if (sender == btnSave)
+            {
+                DialogResult oResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.YesNo
+                                            , MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (oResult == DialogResult.Yes)
+                {
+                    this.updateMaster();
+                    if (this.module.Save())
+                    {
+                        if (this.module.LoadMaster(-1))
+                        {
+                            this.displayMaster();
+                            this.displayDetailList();
+                            this.dataFormContext.PerformAction("SaveEntity");
+                        }
+                    }
+                }
+            }
+            else if ((sender == btnNew) || (sender == btnEntityNew))
+            {
+                if (this.module.New())
+                {
+                    this.displayMaster();
+                    this.displayDetailList();
+                    this.dataFormContext.PerformAction("NewEntity");
+                }
+            }
+            else if ((sender == btnDelete) || (sender == btnEntityDelete))
+            {
+                DialogResult oResult = MessageBox.Show("Are you sure you want to delete this user?", "Warning", MessageBoxButtons.YesNo
+                                            , MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (oResult == DialogResult.Yes)
+                {
+                    bool bCanDelete = false;
+
+                    if (sender == btnDelete)
+                    {   // If the deletion is done from the browser view, we should load the master to delete it.
+                        if (this.BrowserSelectedItem != null)
+                        {
+                            if (this.module.LoadMaster(this.BrowserSelectedItem.Id))
+                                bCanDelete = true;
+                        }
+                    }
+                    else
+                        bCanDelete = true;
+
+                    if (bCanDelete && this.module.Delete())
+                    {
+                        this.dataFormContext.PerformAction("DeleteEntity");
+
+                        // Reloads the browser after the deletion
+                        if (this.module.LoadBrowser(this.browserCriteria))
+                            this.displayBrowserList();
+                    }
+                }
+            }
+            else if (sender == btnCancel)
+                this.dataFormContext.PerformAction("Cancel");
+        }
+
+        // --------------------------------------------------------------------------------------
+        private bool __isSelectingMeasurementUnit = false;
+        private bool __isSelectingItemCategory = false;
+
+        private void DoOnSelectMeasurementUnit(object sender, EventArgs e)
+        {
+            // Do not allow the code to run again
+            if (__isSelectingMeasurementUnit)
+                return;
+
+            __isSelectingMeasurementUnit = true;
+            try
+            {
+                CItem oCurrentItem = this.module.Model.Item;
+                if (this.cboMU.SelectedItem != null)
+                {
+                    CMeasurement_Unit oSelectedPlan = (CMeasurement_Unit)this.cboMU.SelectedItem;
+
+                    // This runs the logic that is encapsulated inside the logic tier
+                    oCurrentItem.Measurement_Unit_CID = oSelectedPlan.CID;
+
+                    // We refresh the UX to reflect any changes done in the logic tier
+                    this.displayMaster();
+                }
+            }
+            finally
+            {
+                __isSelectingMeasurementUnit = false;
+            }
+        }
+        private void DoOnSelectItemCategory(object sender, EventArgs e)
+        {
+            // Do not allow the code to run again
+            if (__isSelectingItemCategory)
+                return;
+
+            __isSelectingItemCategory = true;
+            try
+            {
+                CItem oCurrentItem = this.module.Model.Item;
+                if (this.cboIC.SelectedItem != null)
+                {
+                    CItem_Category oSelectedPlan = (CItem_Category)this.cboIC.SelectedItem;
+
+                    // This runs the logic that is encapsulated inside the logic tier
+                    oCurrentItem.Item_Category_CID = oSelectedPlan.CID;
+
+                    // We refresh the UX to reflect any changes done in the logic tier
+                    this.displayMaster();
+                }
+            }
+            finally
+            {
+                __isSelectingItemCategory = false;
+            }
+        }
+
+        private void Exit(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        public void OpenDialogInCenter()
+        {
+            // Set the StartPosition property to CenterParent
+            this.StartPosition = FormStartPosition.CenterParent;
+
+            // Show the dialog
+            this.ShowDialog();
+        }
+        // --------------------------------------------------------------------------------------
+    }
+    // ....................................................................
+}

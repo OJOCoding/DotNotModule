@@ -1,0 +1,17 @@
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\ItemPackagingData.deps.json
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\ItemPackagingData.dll
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\ItemPackagingData.pdb
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\ItemPackagingCommon.dll
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\Lib.dll
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\Lib.pdb
+C:\Code\CourseProject\ItemPackagingData\bin\Debug\net6.0-windows\ItemPackagingCommon.pdb
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.csproj.AssemblyReference.cache
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.AssemblyInfoInputs.cache
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.AssemblyInfo.cs
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.csproj.CoreCompileInputs.cache
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.csproj.CopyComplete
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.dll
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\refint\ItemPackagingData.dll
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ItemPackagingData.pdb
+C:\Code\CourseProject\ItemPackagingData\obj\Debug\net6.0-windows\ref\ItemPackagingData.dll

@@ -1,0 +1,11 @@
+C:\Code\CourseProject\ItemPackagingCommon\bin\Debug\net6.0-windows\ItemPackagingCommon.deps.json
+C:\Code\CourseProject\ItemPackagingCommon\bin\Debug\net6.0-windows\ItemPackagingCommon.dll
+C:\Code\CourseProject\ItemPackagingCommon\bin\Debug\net6.0-windows\ItemPackagingCommon.pdb
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.AssemblyInfoInputs.cache
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.AssemblyInfo.cs
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.csproj.CoreCompileInputs.cache
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.dll
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\refint\ItemPackagingCommon.dll
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ItemPackagingCommon.pdb
+C:\Code\CourseProject\ItemPackagingCommon\obj\Debug\net6.0-windows\ref\ItemPackagingCommon.dll

@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DataReader.ux
+{
+    public partial class CFormMain : Form
+    {
+        // --------------------------------------------------------------------------------------
+        public CFormMain()
+        {
+            InitializeComponent();
+
+
+        }
+        // --------------------------------------------------------------------------------------
+
+
+
+        // --------------------------------------------------------------------------------------
+        private void DoOnShowBrowser(object sender, EventArgs e)
+        {
+            CFormMaster oForm = new CFormMaster();
+            oForm.MdiParent = this;
+            oForm.Text = "ITEM PACKAGING";
+            oForm.Show();
+        }
+
+
+        private void DoOnClickShowIC(object sender, EventArgs e)
+        {
+            //REUSABILITY: The same form can host a different module
+            CFormTable oForm = new CFormTable(DataModuleType.Item_Category);
+            oForm.Text = "Item Categories";
+            oForm.ShowDialog();
+
+        }
+        private void DoOnClickShowMU(object sender, EventArgs e)
+        {
+            //REUSABILITY: The same form can host a different module
+            CFormTable oForm = new CFormTable(DataModuleType.Measurement_Unit);
+            oForm.Text = "Measurement Unit";
+            oForm.ShowDialog();
+
+        }
+        private void DoOnClickShowPT(object sender, EventArgs e)
+        {
+            //REUSABILITY: The same form can host a different module
+            CFormTable oForm = new CFormTable(DataModuleType.Package_Type);
+            oForm.Text = "Package Type";
+            oForm.ShowDialog();
+
+        }
+        // --------------------------------------------------------------------------------------
+    }
+}

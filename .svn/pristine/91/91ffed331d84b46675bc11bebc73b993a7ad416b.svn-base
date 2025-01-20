@@ -1,0 +1,29 @@
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Lib.Data.Attribs; 
+
+namespace DataReader.data.Records
+{
+    public class View_Item    {
+        [Key]                   //.NET: Example of declaring a field as primary key, using the Key attribute
+        [ReadOnly(true)]        //.NET: Example of declaring a field as read only. 
+        [ColumnWidth(30)]       //.NET: Example of declaring the width of the column when the field is displayed.
+        public int ID { get; set; }
+
+        [DisplayName("Name")]
+        [ReadOnly(true)]
+        [ColumnWidth(250)]
+        public string? Name { get; set; }
+
+        [DisplayName("Symbol")]
+        [ReadOnly(true)]
+        [ColumnWidth(250)]
+        public string? Symbol { get; set; }
+
+
+        public override string ToString()
+        {
+            return String.Format("{0}, {1}, {2}", this.ID, this.Name, this.Symbol);
+        }
+    }
+}
